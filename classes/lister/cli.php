@@ -30,8 +30,6 @@ class cli implements movie\lister
 	function newMovieListerProvider(movie\lister\provider $movieListerProvider)
 	{
 		$lister = new self;
-		$lister->movieTitle = null;
-		$lister->movieDirector = null;
 
 		$movieListerProvider->movieTitleIsAskedByMovieLister($lister);
 		$movieListerProvider->movieDirectorIsAskedByMovieLister($lister);
