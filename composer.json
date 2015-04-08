@@ -1,0 +1,39 @@
+{
+	"name": "estvoyage/movie",
+	"type": "library",
+	"description": "East-oriented implementation of http://martinfowler.com/articles/injection.html",
+	"keywords": [ "Martin Fowler", "East" ],
+	"homepage": "http://github.com/estvoyage/movie",
+	"license": "BSD-2-Clause",
+	"authors": [
+		{
+			"name": "Frédéric Hardy",
+			"email": "frederic.hardy@mageekbox.net",
+			"homepage": "http://blog.mageekbox.net"
+		}
+	],
+	"repositories": [
+		{
+			"url": "https://github.com/mageekguy/atoum.git",
+			"type": "git"
+		}
+	],
+	"require": {
+		"php": ">=5.5.0",
+		"estvoyage/data": "@dev",
+		"estvoyage/value": "@dev"
+	},
+	"require-dev": {
+		"mageekguy/atoum": "@dev"
+	},
+	"autoload": {
+		"psr-4": {
+			"estvoyage\\movie\\": "classes"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"estvoyage\\movie\\tests\\units\\": "tests/units"
+		}
+	}
+}
