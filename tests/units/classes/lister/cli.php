@@ -27,7 +27,6 @@ class cli extends units\test
 			->given(
 				$director = new director(uniqid())
 			)
-
 			->if(
 				$this->newTestedInstance
 			)
@@ -43,7 +42,6 @@ class cli extends units\test
 			->given(
 				$title = new title(uniqid())
 			)
-
 			->if(
 				$this->newTestedInstance
 			)
