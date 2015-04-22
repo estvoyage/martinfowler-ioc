@@ -7,50 +7,50 @@ use
 	estvoyage\movie\movie
 ;
 
-class titleAndDirector implements movie\template
+class titleAndDirector implements movie\consumer
 {
 	private
+		$dataConsumer,
 		$movieTitle,
 		$movieDirector
 	;
 
-	function __construct(movie\title $movieTitle = null, movie\director $movieDirector = null)
+	function __construct(data\consumer $dataConsumer)
 	{
-		$this->movieTitle = $movieTitle ?: new movie\title('n\a');
-		$this->movieDirector = $movieDirector ?: new movie\director('n\a');
-	}
-
-	function newMovie()
-	{
-		return $this
-			->movieTitleIsUnavailable()
-			->movieDirectorIsUnavailable()
-		;
+		$this->dataConsumer = $dataConsumer;
+		$this->movieTitle = new movie\title('n\a');
+		$this->movieDirector = new movie\director('n\a');
 	}
 
 	function movieTitleIs(movie\title $movieTitle)
 	{
-		return new self($movieTitle, $this->movieDirector);
-	}
+		$this->movieTitle = $movieTitle;
 
-	function movieTitleIsUnavailable()
-	{
-		return $this->movieTitleIs(new movie\title('n\a'));
+		return $this;
 	}
 
 	function movieDirectorIs(movie\director $movieDirector)
 	{
-		return new self($this->movieTitle, $movieDirector);
+		$this->movieDirector = $movieDirector;
+
+		return $this;
 	}
 
-	function movieDirectorIsUnavailable()
+	function movieIs(movie $movie)
 	{
-		return $this->movieDirectorIs(new movie\director('n\a'));
+		$template = new self($this->dataConsumer);
+
+		$movie->movieTitleIsAskedByMovieConsumer($template);
+		$movie->movieDirectorIsAskedByMovieConsumer($template);
+
+		$template->noMoreMovieData();
+
+		return $this;
 	}
 
-	function dataConsumerIs(data\consumer $dataConsumer)
+	private function noMoreMovieData()
 	{
-		$dataConsumer
+		$this->dataConsumer
 			->newData(
 				new data\data(
 					'Title: ' . $this->movieTitle . PHP_EOL
