@@ -1,6 +1,6 @@
 <?php
 
-namespace estvoyage\movie\movie\template;
+namespace estvoyage\movie\movie\lister;
 
 use
 	estvoyage\data,

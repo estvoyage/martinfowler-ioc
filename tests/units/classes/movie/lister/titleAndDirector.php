@@ -1,6 +1,6 @@
 <?php
 
-namespace estvoyage\movie\tests\units\movie\template;
+namespace estvoyage\movie\tests\units\movie\lister;
 
 require __DIR__ . '/../../../runner.php';
 
