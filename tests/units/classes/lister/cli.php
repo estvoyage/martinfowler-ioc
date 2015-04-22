@@ -14,13 +14,6 @@ use
 
 class cli extends units\test
 {
-	function testClass()
-	{
-		$this->testedClass
-			->implements('estvoyage\movie\lister')
-		;
-	}
-
 	function testMovieDirectorIs()
 	{
 		$this
@@ -48,51 +41,6 @@ class cli extends units\test
 			->then
 				->object($this->testedInstance->movieTitleIs($title))
 					->isTestedInstance
-		;
-	}
-
-	function testNewMovieListerProvider()
-	{
-		$this
-			->given(
-				$movieDirector = new director(uniqid()),
-				$movieTitle = new title(uniqid()),
-				$listerProvider = new mockOfMovie\lister\provider,
-				$this->calling($listerProvider)->movieDirectorIsAskedByMovieLister = function($lister) use ($movieDirector) {
-					$lister->movieDirectorIs($movieDirector);
-				},
-				$this->calling($listerProvider)->movieTitleIsAskedByMovieLister = function($lister) use ($movieTitle) {
-					$lister->movieTitleIs($movieTitle);
-				}
-			)
-			->if(
-				$this->newTestedInstance
-			)
-			->then
-				->output(function() use ($listerProvider) {
-						$this->object($this->testedInstance->newMovieListerProvider($listerProvider))
-							->isTestedInstance
-						;
-					}
-				)
-				->isEqualTo(
-					'Title: ' . $movieTitle . PHP_EOL .
-					'Director: ' . $movieDirector . PHP_EOL
-				)
-
-			->if(
-				$this->calling($listerProvider)->movieDirectorIsAskedByMovieLister->doesNothing,
-				$this->calling($listerProvider)->movieTitleIsAskedByMovieLister->doesNothing
-			)
-			->then
-				->output(function() use ($listerProvider) {
-						$this->testedInstance->newMovieListerProvider($listerProvider);
-					}
-				)
-				->isEqualTo(
-					'Title: n/a' . PHP_EOL .
-					'Director: n/a' . PHP_EOL
-				)
 		;
 	}
 }

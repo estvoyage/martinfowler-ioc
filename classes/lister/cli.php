@@ -6,7 +6,7 @@ use
 	estvoyage\movie
 ;
 
-class cli implements movie\lister
+class cli
 {
 	private
 		$movieTitle,
@@ -23,19 +23,6 @@ class cli implements movie\lister
 	function movieTitleIs(movie\movie\title $movieTitle)
 	{
 		$this->movieTitle = $movieTitle;
-
-		return $this;
-	}
-
-	function newMovieListerProvider(movie\lister\provider $movieListerProvider)
-	{
-		$lister = new self;
-
-		$movieListerProvider->movieTitleIsAskedByMovieLister($lister);
-		$movieListerProvider->movieDirectorIsAskedByMovieLister($lister);
-
-		echo 'Title: ' . ($lister->movieTitle ?: 'n/a') . PHP_EOL;
-		echo 'Director: ' . ($lister->movieDirector ?: 'n/a') . PHP_EOL;
 
 		return $this;
 	}
