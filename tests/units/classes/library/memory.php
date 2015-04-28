@@ -11,6 +11,13 @@ use
 
 class memory extends units\test
 {
+	function testClass()
+	{
+		$this->testedClass
+			->implements('estvoyage\movie\library')
+		;
+	}
+
 	function testNewMovie()
 	{
 		$this
@@ -22,8 +29,47 @@ class memory extends units\test
 			)
 			->then
 				->object($this->testedInstance->newMovie($movie))
-					->isNotTestedInstance
+					->isTestedInstance
 					->isEqualTo($this->newTestedInstance($movie))
+		;
+	}
+
+	function testMovieFinderIs()
+	{
+		$this
+			->given(
+				$movieFinder = new mockOfMovie\finder
+			)
+			->if(
+				$this->newTestedInstance
+			)
+			->then
+				->object($this->testedInstance->movieFinderIs($movieFinder))->isTestedInstance
+
+			->if(
+				$this->testedInstance
+					->newMovie($movie1 = new mockOfMovie\movie)
+						->movieFinderIs($movieFinder)
+			)
+			->then
+				->mock($movieFinder)
+					->receive('newMovie')
+						->withIdenticalArguments($movie1)
+							->once
+
+			->if(
+				$this->testedInstance
+					->newMovie($movie2 = new mockOfMovie\movie)
+						->movieFinderIs($movieFinder)
+			)
+			->then
+				->mock($movieFinder)
+					->receive('newMovie')
+						->withIdenticalArguments($movie1)
+							->twice
+					->receive('newMovie')
+						->withIdenticalArguments($movie2)
+							->once
 		;
 	}
 }

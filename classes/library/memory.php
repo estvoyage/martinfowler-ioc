@@ -6,7 +6,7 @@ use
 	estvoyage\movie
 ;
 
-class memory
+class memory implements movie\library
 {
 	private
 		$movies
@@ -19,9 +19,18 @@ class memory
 
 	function newMovie(movie\movie $movie)
 	{
-		$library = clone $this;
-		$library->movies[] = $movie;
+		$this->movies[] = $movie;
 
-		return $library;
+		return $this;
+	}
+
+	function movieFinderIs(movie\finder $movieFinder)
+	{
+		foreach ($this->movies as $movie)
+		{
+			$movieFinder->newMovie($movie);
+		}
+
+		return $this;
 	}
 }

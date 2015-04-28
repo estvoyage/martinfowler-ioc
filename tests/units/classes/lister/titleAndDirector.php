@@ -1,8 +1,8 @@
 <?php
 
-namespace estvoyage\movie\tests\units\movie\lister;
+namespace estvoyage\movie\tests\units\lister;
 
-require __DIR__ . '/../../../runner.php';
+require __DIR__ . '/../../runner.php';
 
 use
 	estvoyage\movie\tests\units,
@@ -17,7 +17,7 @@ class titleAndDirector extends units\test
 	function testClass()
 	{
 		$this->testedClass
-			->implements('estvoyage\movie\movie\consumer')
+			->implements('estvoyage\movie\lister')
 		;
 	}
 
@@ -53,7 +53,7 @@ class titleAndDirector extends units\test
 		;
 	}
 
-	function testMovieIs()
+	function testNewMovie()
 	{
 		$this
 			->given(
@@ -64,10 +64,10 @@ class titleAndDirector extends units\test
 				$this->newTestedInstance($dataConsumer)
 			)
 			->then
-				->object($this->testedInstance->movieIs($movie))->isTestedInstance
+				->object($this->testedInstance->newMovie($movie))->isTestedInstance
 				->mock($dataConsumer)
 					->receive('newData')
-						->withArguments(new data\data('Title: n\a' . PHP_EOL . 'Director: n\a' . PHP_EOL))
+						->withArguments(new data\data('Title: n\a' . PHP_EOL . 'Director: n\a' . PHP_EOL . PHP_EOL))
 							->once
 
 			->given(
@@ -75,18 +75,18 @@ class titleAndDirector extends units\test
 				$movieDirector = new movie\director(uniqid())
 			)
 			->if(
-				$this->calling($movie)->movieTitleIsAskedByMovieConsumer = function($movieConsumer) use ($movieTitle) {
-					$movieConsumer->movieTitleIs($movieTitle);
+				$this->calling($movie)->movieTitleIsAskedByMovieLister = function($movieLister) use ($movieTitle) {
+					$movieLister->movieTitleIs($movieTitle);
 				},
-				$this->calling($movie)->movieDirectorIsAskedByMovieConsumer = function($movieConsumer) use ($movieDirector) {
-					$movieConsumer->movieDirectorIs($movieDirector);
+				$this->calling($movie)->movieDirectorIsAskedByMovieLister = function($movieLister) use ($movieDirector) {
+					$movieLister->movieDirectorIs($movieDirector);
 				},
-				$this->testedInstance->movieIs($movie)
+				$this->testedInstance->newMovie($movie)
 			)
 			->then
 				->mock($dataConsumer)
 					->receive('newData')
-						->withArguments(new data\data('Title: ' . $movieTitle . PHP_EOL . 'Director: ' . $movieDirector . PHP_EOL))
+						->withArguments(new data\data('Title: ' . $movieTitle . PHP_EOL . 'Director: ' . $movieDirector . PHP_EOL . PHP_EOL))
 							->once
 		;
 	}
