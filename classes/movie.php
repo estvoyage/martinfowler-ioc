@@ -4,6 +4,6 @@ namespace estvoyage\movie;
 
 interface movie
 {
-	function movieDirectorIsAskedByMovieLister(lister $lister);
-	function movieTitleIsAskedByMovieLister(lister $lister);
+	function movieDirectorIsAskedBy(movie\director\consumer $movieDirectorConsumer);
+	function movieTitleIsAskedBy(movie\title\consumer $movieTitleConsumer);
 }

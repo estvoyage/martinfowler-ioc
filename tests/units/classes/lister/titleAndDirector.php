@@ -18,6 +18,8 @@ class titleAndDirector extends units\test
 	{
 		$this->testedClass
 			->implements('estvoyage\movie\lister')
+			->implements('estvoyage\movie\movie\title\consumer')
+			->implements('estvoyage\movie\movie\director\consumer')
 		;
 	}
 
@@ -75,10 +77,10 @@ class titleAndDirector extends units\test
 				$movieDirector = new movie\director(uniqid())
 			)
 			->if(
-				$this->calling($movie)->movieTitleIsAskedByMovieLister = function($movieLister) use ($movieTitle) {
+				$this->calling($movie)->movieTitleIsAskedBy = function($movieLister) use ($movieTitle) {
 					$movieLister->movieTitleIs($movieTitle);
 				},
-				$this->calling($movie)->movieDirectorIsAskedByMovieLister = function($movieLister) use ($movieDirector) {
+				$this->calling($movie)->movieDirectorIsAskedBy = function($movieLister) use ($movieDirector) {
 					$movieLister->movieDirectorIs($movieDirector);
 				},
 				$this->testedInstance->newMovie($movie)

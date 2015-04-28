@@ -72,4 +72,43 @@ class memory extends units\test
 							->once
 		;
 	}
+
+	function testMovieListerIs()
+	{
+		$this
+			->given(
+				$movieLister = new mockOfMovie\lister
+			)
+			->if(
+				$this->newTestedInstance
+			)
+			->then
+				->object($this->testedInstance->movieListerIs($movieLister))->isTestedInstance
+
+			->if(
+				$this->testedInstance
+					->newMovie($movie1 = new mockOfMovie\movie)
+						->movieListerIs($movieLister)
+			)
+			->then
+				->mock($movieLister)
+					->receive('newMovie')
+						->withIdenticalArguments($movie1)
+							->once
+
+			->if(
+				$this->testedInstance
+					->newMovie($movie2 = new mockOfMovie\movie)
+						->movieListerIs($movieLister)
+			)
+			->then
+				->mock($movieLister)
+					->receive('newMovie')
+						->withIdenticalArguments($movie1)
+							->twice
+					->receive('newMovie')
+						->withIdenticalArguments($movie2)
+							->once
+		;
+	}
 }

@@ -19,42 +19,42 @@ class titleAndDirector extends units\test
 		;
 	}
 
-	function testMovieDirectoriIsAskedByMovieLister()
+	function testMovieDirectoriIsAskedBy()
 	{
 		$this
 			->given(
 				$movieDirector = new movie\director(uniqid()),
 				$movieTitle = new movie\title(uniqid()),
-				$movieLister = new mockOfMovie\lister
+				$movieDirectorConsumer = new mockOfMovie\movie\director\consumer
 			)
 			->if(
 				$this->newTestedInstance($movieDirector, $movieTitle)
 			)
 			->then
-				->object($this->testedInstance->movieDirectorIsAskedByMovieLister($movieLister))
+				->object($this->testedInstance->movieDirectorIsAskedBy($movieDirectorConsumer))
 					->isTestedInstance
-				->mock($movieLister)
+				->mock($movieDirectorConsumer)
 					->receive('movieDirectorIs')
 						->withArguments($movieDirector)
 							->once
 		;
 	}
 
-	function testMovieTitleIsAskedByMovieLister()
+	function testMovieTitleIsAskedBy()
 	{
 		$this
 			->given(
 				$movieDirector = new movie\director(uniqid()),
 				$movieTitle = new movie\title(uniqid()),
-				$movieLister = new mockOfMovie\lister
+				$movieTitleConsumer = new mockOfMovie\movie\title\consumer
 			)
 			->if(
 				$this->newTestedInstance($movieDirector, $movieTitle)
 			)
 			->then
-				->object($this->testedInstance->movieTitleIsAskedByMovieLister($movieLister))
+				->object($this->testedInstance->movieTitleIsAskedBy($movieTitleConsumer))
 					->isTestedInstance
-				->mock($movieLister)
+				->mock($movieTitleConsumer)
 					->receive('movieTitleIs')
 						->withArguments($movieTitle)
 							->once

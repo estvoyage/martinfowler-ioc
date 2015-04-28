@@ -19,16 +19,16 @@ class titleAndDirector implements movie\movie
 		$this->title = $title;
 	}
 
-	function movieDirectorIsAskedByMovieLister(movie\lister $movieLister)
+	function movieDirectorIsAskedBy(director\consumer $movieDirectorConsumer)
 	{
-		$movieLister->movieDirectorIs($this->director);
+		$movieDirectorConsumer->movieDirectorIs($this->director);
 
 		return $this;
 	}
 
-	function movieTitleIsAskedByMovieLister(movie\lister $movieLister)
+	function movieTitleIsAskedBy(title\consumer $movieTitleConsumer)
 	{
-		$movieLister->movieTitleIs($this->title);
+		$movieTitleConsumer->movieTitleIs($this->title);
 
 		return $this;
 	}

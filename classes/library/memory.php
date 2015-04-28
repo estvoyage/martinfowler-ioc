@@ -33,4 +33,14 @@ class memory implements movie\library
 
 		return $this;
 	}
+
+	function movieListerIs(movie\lister $movieLister)
+	{
+		foreach ($this->movies as $movie)
+		{
+			$movieLister->newMovie($movie);
+		}
+
+		return $this;
+	}
 }

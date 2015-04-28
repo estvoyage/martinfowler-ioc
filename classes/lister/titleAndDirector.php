@@ -7,7 +7,7 @@ use
 	estvoyage\movie
 ;
 
-class titleAndDirector implements movie\lister
+class titleAndDirector implements movie\lister, movie\movie\title\consumer, movie\movie\director\consumer
 {
 	private
 		$dataConsumer,
@@ -56,8 +56,8 @@ class titleAndDirector implements movie\lister
 	{
 		$this->movie = $movie;
 
-		$movie->movieTitleIsAskedByMovieLister($this);
-		$movie->movieDirectorIsAskedByMovieLister($this);
+		$movie->movieTitleIsAskedBy($this);
+		$movie->movieDirectorIsAskedBy($this);
 
 		$this->dataConsumer
 			->newData(
