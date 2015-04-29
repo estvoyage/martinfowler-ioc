@@ -2,9 +2,9 @@
 
 ## An east-oriented rewrite of [Martin Fowler](http://martinfowler.com) naive example of [inversion of control](http://martinfowler.com/articles/injection.html), written in PHP!
 
-This repository contains a rewrite of the implementation of Martin Fowler about inversion of control and depedency injection container.
-It was designed using the east compass already used by [James Ladd](http://jamesladdcode.com) to [rewrite](http://jamesladdcode.com/2007/02/02/draft-a-design-compass-east-oriented/) Martin's Fowler implementation in east oriented-manner, but in this version, all public method in all classes return `$this` and only `$this`.
-Moreover, all messages are declarative instead of imperative: each object describe in each messages it send its requirements instead of tell to the callee that it should do.
+This repository contains a rewrite of the implementation of Martin Fowler about inversion of control and depedency injection container.  
+It was designed using the east compass already used by [James Ladd](http://jamesladdcode.com) to [rewrite](http://jamesladdcode.com/2007/02/02/draft-a-design-compass-east-oriented/) Martin's Fowler implementation in east oriented-manner, but in this version, all public method in all classes return `$this` and only `$this`.  
+Moreover, all messages are declarative instead of imperative: each object describe in each messages it send its requirements instead of tell to the callee that it should do.  
 Why? Because the rigorous application of this unique rule decreases coupling and the amount of code that needs to be written, while increasing the clarity, cohesion, flexibility, reuse and testability of that code.  
 In fact, using east-oriented principle and declarative paradigm greatly increase abstraction level, and the most abstraction level is high, the most object oriented programming is powerful!
 
