@@ -1,15 +1,15 @@
 <?php
 
-namespace estvoyage\martinfowler\ioc\tests\units\vod;
+namespace estvoyage\martinfowler\ioc\tests\units\vod\client;
 
-require __DIR__ . '/../../runner.php';
+require __DIR__ . '/../../../runner.php';
 
 use
 	estvoyage\martinfowler\ioc\tests\units,
 	mock\estvoyage\martinfowler\ioc as mockOfIoc
 ;
 
-class catalog extends units\test
+class basket extends units\test
 {
 	function testClass()
 	{

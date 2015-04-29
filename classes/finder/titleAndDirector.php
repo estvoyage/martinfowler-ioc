@@ -7,7 +7,7 @@ use
 	estvoyage\martinfowler\ioc
 ;
 
-class titleAndDirector implements ioc\finder, ioc\movie\title\consumer, ioc\movie\director\consumer
+class titleAndDirector implements ioc\movie\container\consumer, ioc\movie\consumer, ioc\movie\title\consumer, ioc\movie\director\consumer
 {
 	private
 		$movieTitleCriteria,
@@ -55,7 +55,7 @@ class titleAndDirector implements ioc\finder, ioc\movie\title\consumer, ioc\movi
 
 	function newMovieContainer(ioc\movie\container $movieContainer)
 	{
-		$movieContainer->movieFinderIs($this);
+		$movieContainer->movieConsumerIs($this);
 
 		return $this;
 	}

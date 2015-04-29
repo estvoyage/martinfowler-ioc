@@ -17,7 +17,7 @@ class titleAndDirector extends units\test
 	function testClass()
 	{
 		$this->testedClass
-			->implements('estvoyage\martinfowler\ioc\lister')
+			->implements('estvoyage\martinfowler\ioc\movie\consumer')
 			->implements('estvoyage\martinfowler\ioc\movie\title\consumer')
 			->implements('estvoyage\martinfowler\ioc\movie\director\consumer')
 		;

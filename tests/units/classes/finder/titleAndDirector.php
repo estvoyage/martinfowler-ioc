@@ -15,7 +15,8 @@ class titleAndDirector extends units\test
 	function testClass()
 	{
 		$this->testedClass
-			->implements('estvoyage\martinfowler\ioc\finder')
+			->implements('estvoyage\martinfowler\ioc\movie\container\consumer')
+			->implements('estvoyage\martinfowler\ioc\movie\consumer')
 			->implements('estvoyage\martinfowler\ioc\movie\title\consumer')
 			->implements('estvoyage\martinfowler\ioc\movie\director\consumer')
 		;
@@ -98,7 +99,7 @@ class titleAndDirector extends units\test
 			->then
 				->object($this->testedInstance->newMovieContainer($movieContainer))->isTestedInstance
 				->mock($movieContainer)
-					->receive('movieFinderIs')
+					->receive('movieConsumerIs')
 						->withIdenticalArguments($this->testedInstance)
 							->once
 		;

@@ -6,8 +6,7 @@ use
 	estvoyage\martinfowler\ioc
 ;
 
-interface container
+interface consumer
 {
 	function newMovie(ioc\movie $movie);
-	function movieConsumerIs(ioc\movie\consumer $movieConsumer);
 }

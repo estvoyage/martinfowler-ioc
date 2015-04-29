@@ -7,7 +7,7 @@ use
 	estvoyage\martinfowler\ioc
 ;
 
-class titleAndDirector implements ioc\lister, ioc\movie\title\consumer, ioc\movie\director\consumer
+class titleAndDirector implements ioc\movie\consumer, ioc\movie\title\consumer, ioc\movie\director\consumer
 {
 	private
 		$dataConsumer,
