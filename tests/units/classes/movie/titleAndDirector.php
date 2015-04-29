@@ -28,7 +28,7 @@ class titleAndDirector extends units\test
 				$movieDirectorConsumer = new mockOfIoc\movie\director\consumer
 			)
 			->if(
-				$this->newTestedInstance($movieDirector, $movieTitle)
+				$this->newTestedInstance($movieTitle, $movieDirector)
 			)
 			->then
 				->object($this->testedInstance->movieDirectorIsAskedBy($movieDirectorConsumer))
@@ -49,7 +49,7 @@ class titleAndDirector extends units\test
 				$movieTitleConsumer = new mockOfIoc\movie\title\consumer
 			)
 			->if(
-				$this->newTestedInstance($movieDirector, $movieTitle)
+				$this->newTestedInstance($movieTitle, $movieDirector)
 			)
 			->then
 				->object($this->testedInstance->movieTitleIsAskedBy($movieTitleConsumer))

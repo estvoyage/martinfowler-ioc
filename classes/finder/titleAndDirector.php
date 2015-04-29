@@ -7,7 +7,7 @@ use
 	estvoyage\martinfowler\ioc
 ;
 
-class titleAndDirector implements ioc\movie\container\consumer, ioc\movie\consumer, ioc\movie\title\consumer, ioc\movie\director\consumer
+class titleAndDirector implements ioc\movie\container, ioc\movie\container\consumer, ioc\movie\consumer, ioc\movie\title\consumer, ioc\movie\director\consumer
 {
 	private
 		$movieTitleCriteria,
@@ -49,6 +49,13 @@ class titleAndDirector implements ioc\movie\container\consumer, ioc\movie\consum
 		{
 			$this->movieDirector = $movieDirector;
 		}
+
+		return $this;
+	}
+
+	function movieConsumerIs(ioc\movie\consumer $movieConsumer)
+	{
+		$this->movieContainer->movieConsumerIs($movieConsumer);
 
 		return $this;
 	}

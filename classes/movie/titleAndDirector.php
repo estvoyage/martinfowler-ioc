@@ -13,7 +13,7 @@ class titleAndDirector implements ioc\movie
 		$title
 	;
 
-	function __construct(ioc\movie\director $director, ioc\movie\title $title)
+	function __construct(ioc\movie\title $title, ioc\movie\director $director)
 	{
 		$this->director = $director;
 		$this->title = $title;

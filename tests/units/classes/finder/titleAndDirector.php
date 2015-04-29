@@ -15,10 +15,11 @@ class titleAndDirector extends units\test
 	function testClass()
 	{
 		$this->testedClass
-			->implements('estvoyage\martinfowler\ioc\movie\container\consumer')
 			->implements('estvoyage\martinfowler\ioc\movie\consumer')
+			->implements('estvoyage\martinfowler\ioc\movie\container')
 			->implements('estvoyage\martinfowler\ioc\movie\title\consumer')
 			->implements('estvoyage\martinfowler\ioc\movie\director\consumer')
+			->implements('estvoyage\martinfowler\ioc\movie\container\consumer')
 		;
 	}
 
@@ -84,6 +85,25 @@ class titleAndDirector extends units\test
 			)
 			->then
 				->object($this->testedInstance->movieDirectorIs($movieDirector))->isTestedInstance
+		;
+	}
+
+	function testMovieConsumerIs()
+	{
+		$this
+			->given(
+				$movieConsumer = new mockOfIoc\movie\consumer,
+				$movieContainer = new mockOfIoc\movie\container
+			)
+			->if(
+				$this->newTestedInstance(new movie\title(uniqid()), new movie\director(uniqid()), $movieContainer)
+			)
+			->then
+				->object($this->testedInstance->movieConsumerIs($movieConsumer))->isTestedInstance
+				->mock($movieContainer)
+					->receive('movieConsumerIs')
+						->withArguments($movieConsumer)
+							->once
 		;
 	}
 
