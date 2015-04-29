@@ -1,12 +1,12 @@
 <?php
 
-namespace estvoyage\martinfowler\ioc\library;
+namespace estvoyage\martinfowler\ioc\vod;
 
 use
 	estvoyage\martinfowler\ioc
 ;
 
-class memory implements ioc\library
+class catalog implements ioc\movie\container
 {
 	private
 		$movies

@@ -27,13 +27,13 @@ class titleAndDirector extends units\test
 			->given(
 				$movieTitleCriteria = new movie\title(uniqid()),
 				$movieDirectorCriteria = new movie\director(uniqid()),
-				$destinationLibrary = new mockOfIoc\library,
+				$movieContainer = new mockOfIoc\movie\container,
 				$movie = new mockOfIoc\movie,
 				$this->calling($movie)->movieTitleIsAskedBy->doesNothing,
 				$this->calling($movie)->movieDirectorIsAskedBy->doesNothing
 			)
 			->if(
-				$this->newTestedInstance($movieTitleCriteria, $movieDirectorCriteria, $destinationLibrary)
+				$this->newTestedInstance($movieTitleCriteria, $movieDirectorCriteria, $movieContainer)
 			)
 			->then
 				->object($this->testedInstance->newMovie($movie))->isTestedInstance
@@ -51,7 +51,7 @@ class titleAndDirector extends units\test
 				$this->testedInstance->newMovie($movie)
 			)
 			->then
-				->mock($destinationLibrary)
+				->mock($movieContainer)
 					->receive('newMovie')
 						->withIdenticalArguments($movie)
 							->once
@@ -65,7 +65,7 @@ class titleAndDirector extends units\test
 				$movieTitle = new movie\title(uniqid())
 			)
 			->if(
-				$this->newTestedInstance(new movie\title(uniqid()), new movie\director(uniqid()), new mockOfIoc\library)
+				$this->newTestedInstance(new movie\title(uniqid()), new movie\director(uniqid()), new mockOfIoc\movie\container)
 			)
 			->then
 				->object($this->testedInstance->movieTitleIs($movieTitle))->isTestedInstance
@@ -79,25 +79,25 @@ class titleAndDirector extends units\test
 				$movieDirector = new movie\director(uniqid())
 			)
 			->if(
-				$this->newTestedInstance(new movie\title(uniqid()), new movie\director(uniqid()), new mockOfIoc\library)
+				$this->newTestedInstance(new movie\title(uniqid()), new movie\director(uniqid()), new mockOfIoc\movie\container)
 			)
 			->then
 				->object($this->testedInstance->movieDirectorIs($movieDirector))->isTestedInstance
 		;
 	}
 
-	function testNewLibrary()
+	function testNewMovieContainer()
 	{
 		$this
 			->given(
-				$library = new mockOfIoc\library
+				$movieContainer = new mockOfIoc\movie\container
 			)
 			->if(
-				$this->newTestedInstance(new movie\title(uniqid()), new movie\director(uniqid()), new mockOfIoc\library)
+				$this->newTestedInstance(new movie\title(uniqid()), new movie\director(uniqid()), new mockOfIoc\movie\container)
 			)
 			->then
-				->object($this->testedInstance->newLibrary($library))->isTestedInstance
-				->mock($library)
+				->object($this->testedInstance->newMovieContainer($movieContainer))->isTestedInstance
+				->mock($movieContainer)
 					->receive('movieFinderIs')
 						->withIdenticalArguments($this->testedInstance)
 							->once

@@ -1,6 +1,6 @@
 <?php
 
-namespace estvoyage\martinfowler\ioc\tests\units\library;
+namespace estvoyage\martinfowler\ioc\tests\units\vod;
 
 require __DIR__ . '/../../runner.php';
 
@@ -9,12 +9,12 @@ use
 	mock\estvoyage\martinfowler\ioc as mockOfIoc
 ;
 
-class memory extends units\test
+class catalog extends units\test
 {
 	function testClass()
 	{
 		$this->testedClass
-			->implements('estvoyage\martinfowler\ioc\library')
+			->implements('estvoyage\martinfowler\ioc\movie\container')
 		;
 	}
 

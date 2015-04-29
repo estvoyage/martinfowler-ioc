@@ -14,19 +14,19 @@ class titleAndDirector implements ioc\finder, ioc\movie\title\consumer, ioc\movi
 		$movieTitle,
 		$movieDirectorCriteria,
 		$movieDirector,
-		$destinationLibrary
+		$movieContainer
 	;
 
-	function __construct(ioc\movie\title $movieTitleCriteria, ioc\movie\director $movieDirectorCriteria, ioc\library $destinationLibrary)
+	function __construct(ioc\movie\title $movieTitleCriteria, ioc\movie\director $movieDirectorCriteria, ioc\movie\container $movieContainer)
 	{
 		$this->movieTitleCriteria = $movieTitleCriteria;
 		$this->movieDirectorCriteria = $movieDirectorCriteria;
-		$this->destinationLibrary = $destinationLibrary;
+		$this->movieContainer = $movieContainer;
 	}
 
 	function newMovie(ioc\movie $movie)
 	{
-		(new self($this->movieTitleCriteria, $this->movieDirectorCriteria, $this->destinationLibrary))
+		(new self($this->movieTitleCriteria, $this->movieDirectorCriteria, $this->movieContainer))
 			->askTitleAndDirectoryToMovie($movie)
 		;
 
@@ -35,7 +35,7 @@ class titleAndDirector implements ioc\finder, ioc\movie\title\consumer, ioc\movi
 
 	function movieTitleIs(ioc\movie\title $movieTitle)
 	{
-		if ($this->destinationLibrary)
+		if ($this->movieContainer)
 		{
 			$this->movieTitle = $movieTitle;
 		}
@@ -45,7 +45,7 @@ class titleAndDirector implements ioc\finder, ioc\movie\title\consumer, ioc\movi
 
 	function movieDirectorIs(ioc\movie\director $movieDirector)
 	{
-		if ($this->destinationLibrary)
+		if ($this->movieContainer)
 		{
 			$this->movieDirector = $movieDirector;
 		}
@@ -53,9 +53,9 @@ class titleAndDirector implements ioc\finder, ioc\movie\title\consumer, ioc\movi
 		return $this;
 	}
 
-	function newLibrary(ioc\library $library)
+	function newMovieContainer(ioc\movie\container $movieContainer)
 	{
-		$library->movieFinderIs($this);
+		$movieContainer->movieFinderIs($this);
 
 		return $this;
 	}
@@ -71,7 +71,7 @@ class titleAndDirector implements ioc\finder, ioc\movie\title\consumer, ioc\movi
 			$this->movieDirector == $this->movieDirectorCriteria
 		)
 		{
-			$this->destinationLibrary->newMovie($movie);
+			$this->movieContainer->newMovie($movie);
 		}
 
 		return $this;
