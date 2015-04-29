@@ -1,19 +1,19 @@
 <?php
 
-namespace estvoyage\movie\movie;
+namespace estvoyage\martinfowler\ioc\movie;
 
 use
-	estvoyage\movie
+	estvoyage\martinfowler\ioc
 ;
 
-class titleAndDirector implements movie\movie
+class titleAndDirector implements ioc\movie
 {
 	private
 		$director,
 		$title
 	;
 
-	function __construct(movie\movie\director $director, movie\movie\title $title)
+	function __construct(ioc\movie\director $director, ioc\movie\title $title)
 	{
 		$this->director = $director;
 		$this->title = $title;

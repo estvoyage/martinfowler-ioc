@@ -1,13 +1,13 @@
 <?php
 
-namespace estvoyage\movie\lister;
+namespace estvoyage\martinfowler\ioc\lister;
 
 use
 	estvoyage\data,
-	estvoyage\movie
+	estvoyage\martinfowler\ioc
 ;
 
-class titleAndDirector implements movie\lister, movie\movie\title\consumer, movie\movie\director\consumer
+class titleAndDirector implements ioc\lister, ioc\movie\title\consumer, ioc\movie\director\consumer
 {
 	private
 		$dataConsumer,
@@ -19,11 +19,11 @@ class titleAndDirector implements movie\lister, movie\movie\title\consumer, movi
 	function __construct(data\consumer $dataConsumer)
 	{
 		$this->dataConsumer = $dataConsumer;
-		$this->movieTitle = new movie\movie\title('n\a');
-		$this->movieDirector = new movie\movie\director('n\a');
+		$this->movieTitle = new ioc\movie\title('n\a');
+		$this->movieDirector = new ioc\movie\director('n\a');
 	}
 
-	function movieTitleIs(movie\movie\title $movieTitle)
+	function movieTitleIs(ioc\movie\title $movieTitle)
 	{
 		if ($this->movie)
 		{
@@ -33,7 +33,7 @@ class titleAndDirector implements movie\lister, movie\movie\title\consumer, movi
 		return $this;
 	}
 
-	function movieDirectorIs(movie\movie\director $movieDirector)
+	function movieDirectorIs(ioc\movie\director $movieDirector)
 	{
 		if ($this->movie)
 		{
@@ -43,7 +43,7 @@ class titleAndDirector implements movie\lister, movie\movie\title\consumer, movi
 		return $this;
 	}
 
-	function newMovie(movie\movie $movie)
+	function newMovie(ioc\movie $movie)
 	{
 		(new self($this->dataConsumer))
 			->askTitleAndDirectoryToMovie($movie)
@@ -52,7 +52,7 @@ class titleAndDirector implements movie\lister, movie\movie\title\consumer, movi
 		return $this;
 	}
 
-	private function askTitleAndDirectoryToMovie(movie\movie $movie)
+	private function askTitleAndDirectoryToMovie(ioc\movie $movie)
 	{
 		$this->movie = $movie;
 

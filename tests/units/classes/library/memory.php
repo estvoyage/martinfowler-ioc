@@ -1,12 +1,12 @@
 <?php
 
-namespace estvoyage\movie\tests\units\library;
+namespace estvoyage\martinfowler\ioc\tests\units\library;
 
 require __DIR__ . '/../../runner.php';
 
 use
-	estvoyage\movie\tests\units,
-	mock\estvoyage\movie as mockOfMovie
+	estvoyage\martinfowler\ioc\tests\units,
+	mock\estvoyage\martinfowler\ioc as mockOfIoc
 ;
 
 class memory extends units\test
@@ -14,7 +14,7 @@ class memory extends units\test
 	function testClass()
 	{
 		$this->testedClass
-			->implements('estvoyage\movie\library')
+			->implements('estvoyage\martinfowler\ioc\library')
 		;
 	}
 
@@ -22,7 +22,7 @@ class memory extends units\test
 	{
 		$this
 			->given(
-				$movie = new mockOfMovie\movie
+				$movie = new mockOfIoc\movie
 			)
 			->if(
 				$this->newTestedInstance
@@ -38,7 +38,7 @@ class memory extends units\test
 	{
 		$this
 			->given(
-				$movieFinder = new mockOfMovie\finder
+				$movieFinder = new mockOfIoc\finder
 			)
 			->if(
 				$this->newTestedInstance
@@ -48,7 +48,7 @@ class memory extends units\test
 
 			->if(
 				$this->testedInstance
-					->newMovie($movie1 = new mockOfMovie\movie)
+					->newMovie($movie1 = new mockOfIoc\movie)
 						->movieFinderIs($movieFinder)
 			)
 			->then
@@ -59,7 +59,7 @@ class memory extends units\test
 
 			->if(
 				$this->testedInstance
-					->newMovie($movie2 = new mockOfMovie\movie)
+					->newMovie($movie2 = new mockOfIoc\movie)
 						->movieFinderIs($movieFinder)
 			)
 			->then
@@ -77,7 +77,7 @@ class memory extends units\test
 	{
 		$this
 			->given(
-				$movieLister = new mockOfMovie\lister
+				$movieLister = new mockOfIoc\lister
 			)
 			->if(
 				$this->newTestedInstance
@@ -87,7 +87,7 @@ class memory extends units\test
 
 			->if(
 				$this->testedInstance
-					->newMovie($movie1 = new mockOfMovie\movie)
+					->newMovie($movie1 = new mockOfIoc\movie)
 						->movieListerIs($movieLister)
 			)
 			->then
@@ -98,7 +98,7 @@ class memory extends units\test
 
 			->if(
 				$this->testedInstance
-					->newMovie($movie2 = new mockOfMovie\movie)
+					->newMovie($movie2 = new mockOfIoc\movie)
 						->movieListerIs($movieLister)
 			)
 			->then

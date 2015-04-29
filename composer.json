@@ -28,12 +28,12 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"estvoyage\\movie\\": "classes"
+			"estvoyage\\martinfowler\\ioc\\": "classes"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"estvoyage\\movie\\tests\\units\\": "tests/units"
+			"estvoyage\\martinfowler\\ioc\\tests\\units\\": "tests/units"
 		}
 	}
 }

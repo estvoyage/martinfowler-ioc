@@ -1,9 +1,9 @@
 <?php
 
-namespace estvoyage\movie\movie\title;
+namespace estvoyage\martinfowler\ioc\movie\title;
 
 use
-	estvoyage\movie\movie
+	estvoyage\martinfowler\ioc\movie
 ;
 
 interface consumer

@@ -1,6 +1,6 @@
 <?php
 
-namespace estvoyage\movie\tests\units;
+namespace estvoyage\martinfowler\ioc\tests\units;
 
 class test extends \atoum
 {

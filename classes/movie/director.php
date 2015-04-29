@@ -1,6 +1,6 @@
 <?php
 
-namespace estvoyage\movie\movie;
+namespace estvoyage\martinfowler\ioc\movie;
 
 use
 	estvoyage\value\string

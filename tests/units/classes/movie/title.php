@@ -1,11 +1,11 @@
 <?php
 
-namespace estvoyage\movie\tests\units\movie;
+namespace estvoyage\martinfowler\ioc\tests\units\movie;
 
 require __DIR__ . '/../../runner.php';
 
 use
-	estvoyage\movie\tests\units
+	estvoyage\martinfowler\ioc\tests\units
 ;
 
 class title extends units\test

@@ -1,30 +1,30 @@
 <?php
 
-namespace estvoyage\movie\library;
+namespace estvoyage\martinfowler\ioc\library;
 
 use
-	estvoyage\movie
+	estvoyage\martinfowler\ioc
 ;
 
-class memory implements movie\library
+class memory implements ioc\library
 {
 	private
 		$movies
 	;
 
-	function __construct(movie\movie... $movies)
+	function __construct(ioc\movie... $movies)
 	{
 		$this->movies = $movies;
 	}
 
-	function newMovie(movie\movie $movie)
+	function newMovie(ioc\movie $movie)
 	{
 		$this->movies[] = $movie;
 
 		return $this;
 	}
 
-	function movieFinderIs(movie\finder $movieFinder)
+	function movieFinderIs(ioc\finder $movieFinder)
 	{
 		foreach ($this->movies as $movie)
 		{
@@ -34,7 +34,7 @@ class memory implements movie\library
 		return $this;
 	}
 
-	function movieListerIs(movie\lister $movieLister)
+	function movieListerIs(ioc\lister $movieLister)
 	{
 		foreach ($this->movies as $movie)
 		{

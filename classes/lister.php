@@ -1,6 +1,6 @@
 <?php
 
-namespace estvoyage\movie;
+namespace estvoyage\martinfowler\ioc;
 
 interface lister
 {

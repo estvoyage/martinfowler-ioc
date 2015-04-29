@@ -1,15 +1,15 @@
 <?php
 
-namespace estvoyage\movie\tests\units\lister;
+namespace estvoyage\martinfowler\ioc\tests\units\lister;
 
 require __DIR__ . '/../../runner.php';
 
 use
-	estvoyage\movie\tests\units,
+	estvoyage\martinfowler\ioc\tests\units,
 	estvoyage\data,
-	estvoyage\movie\movie,
+	estvoyage\martinfowler\ioc\movie,
 	mock\estvoyage\data as mockOfData,
-	mock\estvoyage\movie as mockOfMovie
+	mock\estvoyage\martinfowler\ioc as mockOfIoc
 ;
 
 class titleAndDirector extends units\test
@@ -17,9 +17,9 @@ class titleAndDirector extends units\test
 	function testClass()
 	{
 		$this->testedClass
-			->implements('estvoyage\movie\lister')
-			->implements('estvoyage\movie\movie\title\consumer')
-			->implements('estvoyage\movie\movie\director\consumer')
+			->implements('estvoyage\martinfowler\ioc\lister')
+			->implements('estvoyage\martinfowler\ioc\movie\title\consumer')
+			->implements('estvoyage\martinfowler\ioc\movie\director\consumer')
 		;
 	}
 
@@ -59,7 +59,7 @@ class titleAndDirector extends units\test
 	{
 		$this
 			->given(
-				$movie = new mockOfMovie\movie,
+				$movie = new mockOfIoc\movie,
 				$dataConsumer = new mockOfData\consumer
 			)
 			->if(

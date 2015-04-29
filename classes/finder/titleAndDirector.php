@@ -1,13 +1,13 @@
 <?php
 
-namespace estvoyage\movie\finder;
+namespace estvoyage\martinfowler\ioc\finder;
 
 use
 	estvoyage\data,
-	estvoyage\movie
+	estvoyage\martinfowler\ioc
 ;
 
-class titleAndDirector implements movie\finder, movie\movie\title\consumer, movie\movie\director\consumer
+class titleAndDirector implements ioc\finder, ioc\movie\title\consumer, ioc\movie\director\consumer
 {
 	private
 		$movieTitleCriteria,
@@ -17,14 +17,14 @@ class titleAndDirector implements movie\finder, movie\movie\title\consumer, movi
 		$destinationLibrary
 	;
 
-	function __construct(movie\movie\title $movieTitleCriteria, movie\movie\director $movieDirectorCriteria, movie\library $destinationLibrary)
+	function __construct(ioc\movie\title $movieTitleCriteria, ioc\movie\director $movieDirectorCriteria, ioc\library $destinationLibrary)
 	{
 		$this->movieTitleCriteria = $movieTitleCriteria;
 		$this->movieDirectorCriteria = $movieDirectorCriteria;
 		$this->destinationLibrary = $destinationLibrary;
 	}
 
-	function newMovie(movie\movie $movie)
+	function newMovie(ioc\movie $movie)
 	{
 		(new self($this->movieTitleCriteria, $this->movieDirectorCriteria, $this->destinationLibrary))
 			->askTitleAndDirectoryToMovie($movie)
@@ -33,7 +33,7 @@ class titleAndDirector implements movie\finder, movie\movie\title\consumer, movi
 		return $this;
 	}
 
-	function movieTitleIs(movie\movie\title $movieTitle)
+	function movieTitleIs(ioc\movie\title $movieTitle)
 	{
 		if ($this->destinationLibrary)
 		{
@@ -43,7 +43,7 @@ class titleAndDirector implements movie\finder, movie\movie\title\consumer, movi
 		return $this;
 	}
 
-	function movieDirectorIs(movie\movie\director $movieDirector)
+	function movieDirectorIs(ioc\movie\director $movieDirector)
 	{
 		if ($this->destinationLibrary)
 		{
@@ -53,14 +53,14 @@ class titleAndDirector implements movie\finder, movie\movie\title\consumer, movi
 		return $this;
 	}
 
-	function newLibrary(movie\library $library)
+	function newLibrary(ioc\library $library)
 	{
 		$library->movieFinderIs($this);
 
 		return $this;
 	}
 
-	private function askTitleAndDirectoryToMovie(movie\movie $movie)
+	private function askTitleAndDirectoryToMovie(ioc\movie $movie)
 	{
 		$movie->movieTitleIsAskedBy($this);
 		$movie->movieDirectorIsAskedBy($this);

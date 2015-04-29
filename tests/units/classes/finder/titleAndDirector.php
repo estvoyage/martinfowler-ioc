@@ -1,13 +1,13 @@
 <?php
 
-namespace estvoyage\movie\tests\units\finder;
+namespace estvoyage\martinfowler\ioc\tests\units\finder;
 
 require __DIR__ . '/../../runner.php';
 
 use
-	estvoyage\movie\tests\units,
-	estvoyage\movie\movie,
-	mock\estvoyage\movie as mockOfMovie
+	estvoyage\martinfowler\ioc\tests\units,
+	estvoyage\martinfowler\ioc\movie,
+	mock\estvoyage\martinfowler\ioc as mockOfIoc
 ;
 
 class titleAndDirector extends units\test
@@ -15,9 +15,9 @@ class titleAndDirector extends units\test
 	function testClass()
 	{
 		$this->testedClass
-			->implements('estvoyage\movie\finder')
-			->implements('estvoyage\movie\movie\title\consumer')
-			->implements('estvoyage\movie\movie\director\consumer')
+			->implements('estvoyage\martinfowler\ioc\finder')
+			->implements('estvoyage\martinfowler\ioc\movie\title\consumer')
+			->implements('estvoyage\martinfowler\ioc\movie\director\consumer')
 		;
 	}
 
@@ -27,8 +27,8 @@ class titleAndDirector extends units\test
 			->given(
 				$movieTitleCriteria = new movie\title(uniqid()),
 				$movieDirectorCriteria = new movie\director(uniqid()),
-				$destinationLibrary = new mockOfMovie\library,
-				$movie = new mockOfMovie\movie,
+				$destinationLibrary = new mockOfIoc\library,
+				$movie = new mockOfIoc\movie,
 				$this->calling($movie)->movieTitleIsAskedBy->doesNothing,
 				$this->calling($movie)->movieDirectorIsAskedBy->doesNothing
 			)
@@ -65,7 +65,7 @@ class titleAndDirector extends units\test
 				$movieTitle = new movie\title(uniqid())
 			)
 			->if(
-				$this->newTestedInstance(new movie\title(uniqid()), new movie\director(uniqid()), new mockOfMovie\library)
+				$this->newTestedInstance(new movie\title(uniqid()), new movie\director(uniqid()), new mockOfIoc\library)
 			)
 			->then
 				->object($this->testedInstance->movieTitleIs($movieTitle))->isTestedInstance
@@ -79,7 +79,7 @@ class titleAndDirector extends units\test
 				$movieDirector = new movie\director(uniqid())
 			)
 			->if(
-				$this->newTestedInstance(new movie\title(uniqid()), new movie\director(uniqid()), new mockOfMovie\library)
+				$this->newTestedInstance(new movie\title(uniqid()), new movie\director(uniqid()), new mockOfIoc\library)
 			)
 			->then
 				->object($this->testedInstance->movieDirectorIs($movieDirector))->isTestedInstance
@@ -90,10 +90,10 @@ class titleAndDirector extends units\test
 	{
 		$this
 			->given(
-				$library = new mockOfMovie\library
+				$library = new mockOfIoc\library
 			)
 			->if(
-				$this->newTestedInstance(new movie\title(uniqid()), new movie\director(uniqid()), new mockOfMovie\library)
+				$this->newTestedInstance(new movie\title(uniqid()), new movie\director(uniqid()), new mockOfIoc\library)
 			)
 			->then
 				->object($this->testedInstance->newLibrary($library))->isTestedInstance
